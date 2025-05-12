@@ -14,15 +14,17 @@ pipeline {
             }
         }
     }
+    
+    // Уведомления о результате тестов
     post {
         always {
-            junit '**/test-results/*.xml'
-        }
-        success {
-            echo 'Tests passed!'
-        }
-        failure {
-            echo 'Tests failed.'
+            script {
+                if (currentBuild.result == 'SUCCESS') {
+                    echo 'Тесты успешно пройдены!'
+                } else {
+                    echo 'Тесты не прошли.'
+                }
+            }
         }
     }
 }
