@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git branch: 'main', url: 'https://github.com/arch-hcra/5st.git' 
+                git 'https://github.com/arch-hcra/5st.git'
             }
         }
 
@@ -14,15 +14,13 @@ pipeline {
             }
         }
     }
-    
-    // Уведомления о результате тестов
     post {
         always {
             script {
                 if (currentBuild.result == 'SUCCESS') {
-                    echo 'Тесты успешно пройдены!'
+                    echo 'Yes complited'
                 } else {
-                    echo 'Тесты не прошли.'
+                    echo 'No complited'
                 }
             }
         }
