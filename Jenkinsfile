@@ -4,34 +4,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Получение кода из репозитория
-                checkout scm
+                git url: 'https://github.com/arch-hcra/5st.git'
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                // Установка зависимостей
-                sh 'pip install -r requirements.txt'
-            }
-        }
+
         stage('Run Tests') {
             steps {
-                // Запуск тестов с помощью pytest
-                sh 'pytest'
+                sh 'pytest test_login.py'
             }
-        }
-    }
-
-    post {
-        always {
-            // Действия, выполняемые всегда, например, публикация отчетов
-            junit '**/test-results/*.xml' // Если у вас есть XML отчеты
-        }
-        success {
-            echo 'Tests passed!'
-        }
-        failure {
-            echo 'Tests failed!'
         }
     }
 }
