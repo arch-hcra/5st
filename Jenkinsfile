@@ -7,14 +7,10 @@ pipeline {
                 git 'https://github.com/arch-hcra/5st.git'
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh 'pip install -r requirements.txt'
-            }
-        }
+
         stage('Run Tests') {
             steps {
-                sh 'pytest test_login.py'
+                bat 'pytest test_login.py'
             }
         }
     }
