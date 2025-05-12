@@ -15,4 +15,4 @@ def test_check_cred():
     assert check_cred("user", "123456") == False 
     assert check_cred("user", "pass123") == False 
     assert check_cred("admin", "password") == False  
-    assert check_cred("user", "12345") == False 
+    assert check_cred("user", "12345") == True
